@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hk.oa.authority.dao.auth.UserMapper">
+    <resultMap id="BaseResultMap" type="com.hk.oa.authority.auth.entity.User">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="department_id" jdbcType="INTEGER" property="departmentId"/>
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="sex" jdbcType="VARCHAR" property="sex"/>
+        <result column="is_can_login" jdbcType="BIT" property="isCanLogin"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+        <result column="photo" jdbcType="VARCHAR" property="photo"/>
+        <result column="work_describe" jdbcType="VARCHAR" property="workDescribe"/>
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="continuation_error_day" jdbcType="DATE" property="continuationErrorDay"/>
+        <result column="continuation_error_count" jdbcType="INTEGER" property="continuationErrorCount"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="create_user" jdbcType="INTEGER" property="createUser"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_user" jdbcType="INTEGER" property="updateUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+    </resultMap>
+
+    <select id="getUserByAccount" resultMap="BaseResultMap" >
+        select * from user
+    </select>
+
+</mapper>

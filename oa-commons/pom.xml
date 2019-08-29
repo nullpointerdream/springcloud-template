@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>hk-oa</artifactId>
+        <groupId>com.hk.oa</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <packaging>pom</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>oa-commons</artifactId>
+
+    <modules>
+        <module>oa-swagger2-starter</module>
+        <module>oa-jwt-starter</module>
+        <module>oa-common</module>
+        <module>oa-redis-starter</module>
+        <module>oa-log-starter</module>
+        <module>oa-user-starter</module>
+        <module>oa-validator-starter</module>
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.hk.oa</groupId>
+                <artifactId>oa-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+
+
+</project>

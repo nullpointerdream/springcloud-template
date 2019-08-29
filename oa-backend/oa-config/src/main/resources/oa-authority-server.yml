@@ -1,0 +1,25 @@
+oa:
+  swagger:
+    enabled: true
+    docket:
+      auth:
+        title: 权限模块
+        base-package: com.hk.oa.authority.controller.auth
+
+mybatis:
+  basepackage: com.hk.oa.authority.dao
+  xmlLocation: classpath*:mapper/*.xml
+  mapper-locations: "classpath*:mapper/*/*.xml"
+
+logging:
+  level:
+    com.alibaba.nacos: warn
+    com.hk.oa.authority.dao.*;: debug
+
+authentication:
+  user:
+    header-name: Authorization
+    expire: 7200               # 外部token有效期为2小时
+    refresh_expire: 604800     # refershToken有效期为7天
+    pri-key: client/pri.key    # 加密
+    pub-key: client/pub.key    # 解密

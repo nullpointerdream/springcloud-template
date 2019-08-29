@@ -1,0 +1,36 @@
+server:
+  port: 9009
+
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: oa-authority-server
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yml
+        namespace: 93c3fcb9-cf07-4f44-994d-23b019e2f904
+        shared-dataids: common.yml
+        refreshable-dataids: common.yml
+        enabled: true
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: 93c3fcb9-cf07-4f44-994d-23b019e2f904
+        metadata:
+          service.name: 认证服务
+
+
+
+
+
+
+
+
+
+
+
