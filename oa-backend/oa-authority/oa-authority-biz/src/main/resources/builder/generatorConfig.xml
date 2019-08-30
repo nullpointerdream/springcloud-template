@@ -28,6 +28,6 @@
             <generatedKey column="id" identity="false" sqlStatement="myql"/>
         </table>-->
 
-        <table tableName="common_opt_log" domainObjectName="OptLog"/>
+        <table tableName="auth_role_authority" domainObjectName="RoleAuthority"/>
     </context>
 </generatorConfiguration>

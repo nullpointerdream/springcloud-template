@@ -24,6 +24,13 @@
 
 
   <select id="findVisibleMenu" resultMap="BaseResultMap">
+           SELECT
+                menu.*
+           FROM
+                auth_user u
+            INNER JOIN auth_role_authority auth ON u.role_id = auth.role_id
+            INNER JOIN auth_menu menu ON auth.authority_id = menu.id
 
+           where u.id=#{userId} and auth.authority_type='MENU'
   </select>
 </mapper>

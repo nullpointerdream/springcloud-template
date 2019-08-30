@@ -1,6 +1,7 @@
 package com.hk.oa.authority.controller.auth;
 
 import com.github.pagehelper.Page;
+import com.hk.oa.authority.auth.dto.RoleAuthoritySaveDto;
 import com.hk.oa.authority.auth.dto.RoleQueryDto;
 import com.hk.oa.authority.auth.dto.RoleUpdateDto;
 import com.hk.oa.authority.auth.entity.Role;
@@ -94,4 +95,21 @@ public class RoleController extends BaseController<RoleBiz, Role> {
         Page<Role> list =baseBiz.getRoleList(roleQueryDto);
         return  ResponseResultUtil.buildSuccessPageResponseResult("查询成功",list);
     }
+
+
+    /**
+     * 给角色配置权限
+     *
+     * @param roleAuthoritySaveDto 角色权限授权对象
+     * @return 新增结果
+     */
+    @ApiOperation(value = "给角色配置权限", notes = "给角色配置权限")
+    @PostMapping("/menu")
+    @Validated
+    public ResponseResult save(@RequestBody @Valid RoleAuthoritySaveDto roleAuthoritySaveDto) {
+        roleAuthoritySaveDto.setCreateUser(this.getCurrentUserId());
+        baseBiz.addRoleMenu(roleAuthoritySaveDto);
+        return  ResponseResultUtil.buildSuccessResponseResult("设置成功",null);
+    }
+
 }

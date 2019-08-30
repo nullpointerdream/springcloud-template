@@ -2,17 +2,24 @@ package com.hk.oa.authority.biz.auth;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.hk.oa.authority.auth.dto.RoleAuthoritySaveDto;
 import com.hk.oa.authority.auth.dto.RoleQueryDto;
 import com.hk.oa.authority.auth.dto.RoleUpdateDto;
 import com.hk.oa.authority.auth.entity.Role;
+import com.hk.oa.authority.auth.entity.RoleAuthority;
+import com.hk.oa.authority.auth.enumeration.AuthorizeType;
+import com.hk.oa.authority.dao.auth.RoleAuthorityMapper;
 import com.hk.oa.authority.dao.auth.RoleMapper;
 import com.hk.oa.common.biz.BaseBiz;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @program: hk-oa-master
@@ -24,7 +31,8 @@ import java.util.Date;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class RoleBiz extends BaseBiz<RoleMapper, Role> {
-
+    @Autowired
+    private RoleAuthorityMapper roleAuthorityMapper;
     /**
      * @Description: 添加角色
      * @Param: [entity]
@@ -66,5 +74,30 @@ public class RoleBiz extends BaseBiz<RoleMapper, Role> {
         Page list = PageHelper.startPage(roleQueryDto.getPage(), roleQueryDto.getLimit());
         mapper.selectAll();
         return list;
+    }
+
+
+    /**
+    * @Description: 角色添加权限
+    * @Param: [roleAuthoritySaveDto]
+    * @return: void
+    * @Author: 陈家乐
+    * @Date: 2019/8/30
+    */
+    public void addRoleMenu(RoleAuthoritySaveDto roleAuthoritySaveDto) {
+        roleAuthorityMapper.deleteAuthorityByRole(roleAuthoritySaveDto.getRoleId(),AuthorizeType.MENU.getCode());
+        if (!roleAuthoritySaveDto.getMenuIdList().isEmpty()) {
+            List<RoleAuthority> menuList = roleAuthoritySaveDto.getMenuIdList()
+                    .stream()
+                    .map((menuId) -> RoleAuthority.builder()
+                            .authorityType(AuthorizeType.MENU.getCode())
+                            .authorityId(menuId)
+                            .roleId(roleAuthoritySaveDto.getRoleId())
+                             .createTime(new Date())
+                             .createUser(roleAuthoritySaveDto.getCreateUser())
+                            .build())
+                    .collect(Collectors.toList());
+            roleAuthorityMapper.saveBatch(menuList);
+        }
     }
 }

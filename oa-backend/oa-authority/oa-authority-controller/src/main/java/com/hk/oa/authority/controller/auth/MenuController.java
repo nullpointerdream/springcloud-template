@@ -8,9 +8,12 @@ package com.hk.oa.authority.controller.auth;
  **/
 
 import com.hk.oa.authority.auth.entity.Menu;
+import com.hk.oa.authority.auth.vo.MenuTree;
 import com.hk.oa.authority.biz.auth.MenuBiz;
 import com.hk.oa.common.rest.BaseController;
+import com.hk.oa.common.utils.ResponseResultUtil;
 import com.hk.oa.common.vo.ResponseResult;
+import com.hk.oa.common.vo.tree.TreeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/menu")
@@ -46,8 +50,9 @@ public class MenuController extends BaseController<MenuBiz, Menu> {
         if ( userId == null || userId <= 0) {
             userId = this.getCurrentUserId();
         }
-        List<Menu> list=baseBiz.findVisibleMenu(userId);
-        return null;
+        List<Menu> menus=baseBiz.findVisibleMenu(userId);
+        List<MenuTree> list = menus.stream().map(bean -> new MenuTree(bean)).collect(Collectors.toList());
+        return ResponseResultUtil.buildSuccessResponseResult("",TreeUtil.bulid(list,0));
     }
 
 

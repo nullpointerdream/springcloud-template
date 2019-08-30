@@ -64,6 +64,11 @@ public class Menu {
     private String icon;
 
     /**
+     * 类型目录 dirt 菜单 menu
+     */
+    private String type;
+
+    /**
      * 父级菜单id
      */
     @Column(name = "parent_id")
@@ -332,5 +337,14 @@ public class Menu {
 
     public void setUpdateUser(Integer updateUser) {
         this.updateUser = updateUser;
+    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
