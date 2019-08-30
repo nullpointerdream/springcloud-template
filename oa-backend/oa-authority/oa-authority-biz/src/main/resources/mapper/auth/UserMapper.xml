@@ -27,7 +27,7 @@
     </resultMap>
 
     <select id="getUserByAccount" resultMap="BaseResultMap" >
-        select * from user
+        select * from auth_user where account=#{account}
     </select>
 
 </mapper>

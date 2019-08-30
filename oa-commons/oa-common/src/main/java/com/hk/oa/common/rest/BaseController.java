@@ -19,39 +19,9 @@ public class BaseController<Biz extends BaseBiz, Entity> extends BaseInfoControl
     @Autowired
     protected Biz baseBiz;
 
+
+
     /**
-     * @MethodName: add
-     * @param: [entity]
-     * @Description: 添加功能
-     * @author: 张本学
-     * @date: 2018-11-12 17:13
-     * @since: JDK 1.8
-     */
-    /*@ApiOperation(value = "新增", notes = "新增")
-    @Validated //表单校验
-    @RequestMapping(value = "insert", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseResult<Entity> add(@RequestBody Entity entity) {
-        baseBiz.insertSelective(entity);
-        return  ResponseResultUtil.buildSuccessResponseResult("添加成功",null);
-    }
-
-    *//**
-     * @MethodName: get
-     * @param: [id]
-     * @Description: 根据Id查询
-     * @author: 张本学
-     * @date: 2018-11-12 17:16
-     * @since: JDK 1.8
-     *//*
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public ResponseResult<Entity> get(@PathVariable int id) {
-        Object o = baseBiz.selectById(id);
-        return  ResponseResultUtil.buildSuccessResponseResult("查询成功",(Entity)o);
-    }
-
-    *//**
      * @MethodName: update
      * @param: [entity]
      * @Description: 更新
@@ -59,13 +29,6 @@ public class BaseController<Biz extends BaseBiz, Entity> extends BaseInfoControl
      * @date: 2018-11-12 17:49
      * @since: JDK 1.8
      *//*
-    @RequestMapping(value = "/update", method = RequestMethod.POST)
-    @ResponseBody
-    @ApiOperation(value = "更新", notes = "更新")
-    @Validated //表单校验
-    public ResponseResult<Entity> update(@RequestBody Entity entity) {
-        return  ResponseResultUtil.buildSuccessResponseResult("更新成功",null);
-    }
 
     *//**
      * @MethodName: remove

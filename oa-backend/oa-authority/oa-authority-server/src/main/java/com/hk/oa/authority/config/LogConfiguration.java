@@ -3,6 +3,7 @@ package com.hk.oa.authority.config;
 import com.alibaba.fastjson.JSONObject;
 
 
+import com.hk.oa.authority.biz.common.OptLogBiz;
 import com.hk.oa.log.event.SysLogListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -19,7 +20,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class LogConfiguration {
 
     @Bean
-    public SysLogListener sysLogListener() {
-        return new SysLogListener((log) -> JSONObject.toJSONString(log));
+    public SysLogListener sysLogListener(OptLogBiz optLogBiz) {
+        return new SysLogListener((log) -> optLogBiz.save(log));
     }
 }

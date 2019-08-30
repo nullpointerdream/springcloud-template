@@ -21,4 +21,9 @@
     <result column="update_user" property="updateUser" jdbcType="BIGINT" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
+
+
+  <select id="findVisibleMenu" resultMap="BaseResultMap">
+
+  </select>
 </mapper>

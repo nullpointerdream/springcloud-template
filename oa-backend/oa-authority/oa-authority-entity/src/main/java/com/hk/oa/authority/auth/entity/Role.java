@@ -1,7 +1,12 @@
 package com.hk.oa.authority.auth.entity;
 
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
-import javax.persistence.*;
 
 @Table(name = "auth_role")
 public class Role {
@@ -11,6 +16,8 @@ public class Role {
     /**
      * 角色名称
      */
+    @NotEmpty(message = "角色名称不能为空")
+    @ApiModelProperty(value = "角色名称", required = true)
     private String name;
 
     /**
@@ -21,6 +28,7 @@ public class Role {
     /**
      * 功能描述
      */
+    @ApiModelProperty(value = "角色描述")
     private String describe;
 
     /**
@@ -33,6 +41,7 @@ public class Role {
      * 数据权限类型{1,全部;2,本级;3,本级以及子级;4,自定义;5,个人;}
      */
     @Column(name = "ds_type")
+    @ApiModelProperty(value = "数据权限类型{1,全部;2,本级;3,本级以及子级;4,自定义;5,个人;}")
     private Integer dsType;
 
     /**

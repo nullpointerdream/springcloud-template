@@ -1,10 +1,14 @@
 package com.hk.oa.authority.biz.auth;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.hk.oa.auth.server.utils.JwtTokenServerUtils;
 import com.hk.oa.auth.utils.JwtUserInfo;
 import com.hk.oa.auth.utils.Token;
 import com.hk.oa.authority.auth.dto.TokenRefreshDto;
 import com.hk.oa.authority.auth.dto.UserLoginDto;
+import com.hk.oa.authority.auth.dto.UserQueryDto;
+import com.hk.oa.authority.auth.dto.UserUpdateDto;
 import com.hk.oa.authority.auth.entity.User;
 import com.hk.oa.authority.dao.auth.UserMapper;
 import com.hk.oa.common.biz.BaseBiz;
@@ -12,6 +16,7 @@ import com.hk.oa.common.exception.BizException;
 import com.hk.oa.common.exception.code.ExceptionCode;
 import com.hk.oa.redis.template.RedisRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -78,10 +83,11 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
     }
 
     private User getUser(String account, String password) {
-        User user = mapper.getUserByAccount(account,false);
-        if (user == null || !encoder.matches(password, user.getPassword())) {
+        User user = mapper.getUserByAccount(account);
+        if (user == null || user.getIsDelete()|| !encoder.matches(password, user.getPassword())) {
             throw new BizException(ExceptionCode.JWT_USER_INVALID.getCode(), ExceptionCode.JWT_USER_INVALID.getMsg());
         }
+
         if (user.getIsCanLogin() == null || !user.getIsCanLogin()) {
             throw new BizException(ExceptionCode.JWT_USER_ENABLED.getCode(), ExceptionCode.JWT_USER_ENABLED.getMsg());
         }
@@ -115,5 +121,33 @@ public class UserBiz extends BaseBiz<UserMapper, User> {
         entity.setCreateTime(date);
         mapper.insertSelective(entity);
 
+    }
+
+    /**
+    * @Description: 更新用户
+    * @Param: [entity]
+    * @return: void
+    * @Author: 陈家乐
+    * @Date: 2019/8/30
+    */
+    public void updateUser(UserUpdateDto userUpdateDto) {
+        User user =new User();
+        BeanUtils.copyProperties(userUpdateDto, user);
+        user.setUpdateTime(new Date());
+        mapper.updateByPrimaryKeySelective(user);
+    }
+
+
+    /**
+    * @Description: 分页查询用户
+    * @Param: [userQueryDto]
+    * @return: com.github.pagehelper.Page<com.hk.oa.authority.auth.entity.User>
+    * @Author: 陈家乐
+    * @Date: 2019/8/30
+    */
+    public Page<User> getUserList(UserQueryDto userQueryDto) {
+        Page list =  PageHelper.startPage(userQueryDto.getPage(), userQueryDto.getLimit());
+        mapper.selectAll();
+        return list;
     }
 }

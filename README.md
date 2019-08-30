@@ -5,7 +5,7 @@
 ![](https://img.shields.io/badge/version-1.0-brightgreen.svg)
 
 
-## 简介：
+## 简介： 
 基于`SpringCloud(Greenwich.SR2)`  + `SpringBoot(2.1.7.RELEASE)` 的微服务 脚手架，
 具备用户管理、资源权限管理、网关统一鉴权、自动代码生成、分布式事务等多个模块，支持多业务系统并行开发，
 支持多服务并行开发，可以作为后端服务的开发脚手架。代码简洁，架构清晰，非常适合学习使用。
@@ -68,7 +68,7 @@ Nacos修改配置文件可以将配置文件持久化到mysql库中
     - JSON序列化:Jackson
     - 数据库： MySQL 5.7.9 (驱动6.0.6)
     - 持久层框架： Mybatis
-    - 代码生成器：基于Mybatis-plus-generator自定义  [https://github.com/zuihou/zuihou-generator.git]
+    - 代码生成器：基于Mybatis-generator
     - API网关：gateway 
     - 服务注册与发现： Nacos
     - 服务消费：OpenFeign
@@ -93,19 +93,11 @@ PS: Lombok版本过低会导致枚举类型的参数无法正确获取参数，�
 - oa-xxx-api 模块中提供feign客户端
 - 区分po、dto，不要把po中的所有字段都返回给前端。 前端需要什么字段，就返回什么字段
 - 类名：首字母大写驼峰规则；方法名：首字母小写驼峰规则；常量：全大写；变量：首字母小写驼峰规则，尽量非缩写
-- 业务模块接口层命名为`项目-业务-api`，如`zuihou-authority-api`
-- 业务模块业务层命名为`项目-业务-biz`，如`zuihou-authority-biz`
-- 业务模块控制层命名为`项目-业务-controller`，如`zuihou-authority-controller`
-- 业务模块容器命名为`项目-业务-server`，如`zuihou-authority-server`
-- 注释：
-```
-表注释： 第一行用简短的文字来描述表的名称，会体现在Swagger中； 换行后对表进行详细介绍
-字段注释： 第一行用简短的文字来描述字段的名称，会体现在Swagger的字段描述上； 换行后对字段进行详细的描述。
-        另外，若字段需要使用枚举类型，则字段需要设置成varchar类型， 并在字段注释上使用 #枚举类型{KEY:描述;key2:描述;} 格式来描述枚举类型格式， 代码生成器会自动生成枚举类
-        eg: #LogType{OPT:操作日志;EX:异常日志;}
-类注释： 用 /** 开头的文档型注释， 并添加 @author @date 等参数
-方法注释：  用 /** 开头的文档型注释， 并添加 @param @return 等参数
-```
+- 业务模块接口层命名为`项目-业务-api`，如`oa-authority-api`
+- 业务模块业务层命名为`项目-业务-biz`，如`oa-authority-biz`
+- 业务模块控制层命名为`项目-业务-controller`，如`oa-authority-controller`
+- 业务模块容器命名为`项目-业务-server`，如`oa-authority-server`
+
 - 更多规范，参考[阿里巴巴Java开发手册] 
 
 ## 小技巧
@@ -174,10 +166,10 @@ PS: Lombok版本过低会导致枚举类型的参数无法正确获取参数，�
 
 | 服务 | 端口号 |
 |:----:|:----:|
-| oa-eureka | 8761 |  ​
+| nacos | 8848 |  ​
 | - | - |​- | ​
-| oa-gateway-server | 8760 |  ​
-| oa-authority-server | 8764 |  ​
+| oa-gateway-server | 9008 |  ​
+| oa-authority-server | 9007 |  ​
 
 
 ## 常见报错：

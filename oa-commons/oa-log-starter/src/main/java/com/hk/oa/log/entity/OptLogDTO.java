@@ -1,13 +1,9 @@
 package com.hk.oa.log.entity;
 
-import java.time.LocalDateTime;
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -19,10 +15,6 @@ import lombok.experimental.Accessors;
  * @since 2019-07-02
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString(callSuper = true)
-@EqualsAndHashCode
 @Accessors(chain = true)
 public class OptLogDTO {
 

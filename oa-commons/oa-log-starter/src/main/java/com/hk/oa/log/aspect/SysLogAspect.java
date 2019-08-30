@@ -133,13 +133,9 @@ public class SysLogAspect {
                 sysLog.setType("EX");
                 sysLog.setExDetail(r.getMessage());
             }
-            if (r != null) {
-                sysLog.setResult(getText(r.toString()));
-            } else {
-                sysLog.setResult(getText(JSONObject.toJSONString(ret)));
-            }
-            log.info("返回值{}",sysLog.getResult());
+            sysLog.setResult(getText(JSONObject.toJSONString(r)));
 
+            log.info("返回值{}",sysLog.getResult());
             publishEvent(sysLog);
         });
 
