@@ -3,67 +3,59 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>hk-oa</artifactId>
+        <artifactId>oa-backend</artifactId>
         <groupId>com.hk.oa</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>oa-backend</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>oa-workflow</artifactId>
+
+    <description>工作流</description>
     <modules>
-        <module>oa-authority</module>
-        <module>oa-gateway</module>
-        <module>oa-config</module>
-        <module>oa-workflow</module>
+        <module>oa-workflow-entity</module>
+        <module>oa-workflow-biz</module>
+        <module>oa-workflow-controller</module>
     </modules>
+
+    <packaging>pom</packaging>
+
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.hk.oa</groupId>
+                <artifactId>oa-workflow-entity</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hk.oa</groupId>
                 <artifactId>oa-swagger2-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>com.hk.oa</groupId>
-                <artifactId>oa-jwt-starter</artifactId>
+                <artifactId>oa-workflow-biz</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hk.oa</groupId>
-                <artifactId>oa-activiti-starter</artifactId>
+                <artifactId>oa-workflow-controller</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hk.oa</groupId>
-                <artifactId>oa-redis-starter</artifactId>
+                <artifactId>oa-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.hk.oa</groupId>
-                <artifactId>oa-user-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hk.oa</groupId>
-                <artifactId>oa-log-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hk.oa</groupId>
-                <artifactId>oa-validator-starter</artifactId>
-                <version>${project.version}</version>
-            </dependency>
 
         </dependencies>
     </dependencyManagement>
-
 
 
 </project>

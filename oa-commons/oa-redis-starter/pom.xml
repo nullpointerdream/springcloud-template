@@ -8,7 +8,7 @@
         <version>1.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.hk.oa</groupId>
+    
     <artifactId>oa-redis-starter</artifactId>
     <name>oa-redis-starter</name>
     <description>redis</description>

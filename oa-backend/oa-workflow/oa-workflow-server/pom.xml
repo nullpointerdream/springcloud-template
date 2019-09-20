@@ -3,22 +3,20 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>oa-authority</artifactId>
+        <artifactId>oa-workflow</artifactId>
         <groupId>com.hk.oa</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>oa-authority-server</artifactId>
-    <name>oa-authority-server</name>
-    <description>认证模块</description>
+    <artifactId>oa-workflow-server</artifactId>
+    <name>oa-workflow-server</name>
+    <description>工作流模块</description>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
 
     <dependencies>
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -26,16 +24,28 @@
         </dependency>
 
 
+       <!-- <dependency>
+            <groupId>com.hk.oa</groupId>
+            <artifactId>oa-workflow-controller</artifactId>
+        </dependency>
+-->
         <dependency>
             <groupId>com.hk.oa</groupId>
-            <artifactId>oa-authority-controller</artifactId>
+            <artifactId>oa-activiti-starter</artifactId>
+        </dependency>
+        <!--MySQL-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <dependency>
+
+
+       <!-- <dependency>
             <groupId>com.hk.oa</groupId>
             <artifactId>oa-swagger2-starter</artifactId>
         </dependency>
-
+-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -91,5 +101,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

@@ -20,6 +20,7 @@
         <module>oa-log-starter</module>
         <module>oa-user-starter</module>
         <module>oa-validator-starter</module>
+        <module>oa-activiti-starter</module>
     </modules>
 
     <dependencyManagement>

@@ -9,7 +9,6 @@ import com.hk.oa.redis.template.RedisRepository;
 import com.hk.oa.redis.utils.RedisObjectSerializer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -39,6 +38,7 @@ import java.util.Optional;
 @Slf4j
 @EnableConfigurationProperties({RedisProperties.class, CustomCacheProperties.class})
 @EnableCaching
+
 public class RedisAutoConfigure {
 
     @Autowired
